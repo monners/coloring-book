@@ -5,7 +5,7 @@ export default class ColorInput extends Component {
         return (
             <div className='color-input'>
                 <label>{this.props.label}</label>
-                <input type='text' value={this.props.value} onChange={this.props.onChange} />
+                <input type='text' valueLink={this.props.valueLink} />
             </div>
         );
     }

@@ -17,10 +17,19 @@ export class App extends Component {
         };
     }
 
+    makeValueLink = (prop) => {
+        console.log(prop);
+        return {
+            value: this.state[prop],
+            requestChange: (newVal) => {
+                this.setState({...this.state, [prop]: newVal});
+            }
+        }
+    };
+
     updateColor = (prop, e) => {
         let newState = Object.assign({}, this.state, {[prop]: e.target.value});
         this.setState(newState);
-        console.log(this.state);
     };
 
     render() {
@@ -35,37 +44,29 @@ export class App extends Component {
                     wing={this.state.wing}
                     hair={this.state.hair} />
                 <ColorInput
-                    value={this.state.tail}
-                    label='tail'
-                    onChange={this.updateColor.bind(null, 'tail')} />
+                    valueLink={this.makeValueLink('tail')}
+                    label='tail'/>
                 <ColorInput
-                    value={this.state.legs}
-                    label='legs'
-                    onChange={this.updateColor.bind(null, 'legs')} />
+                    valueLink={this.makeValueLink('legs')}
+                    label='legs' />
                 <ColorInput
-                    value={this.state.eye}
-                    label='eye'
-                    onChange={this.updateColor.bind(null, 'eye')} />
+                    valueLink={this.makeValueLink('eye')}
+                    label='eye' />
                 <ColorInput
-                    value={this.state.body}
-                    label='body'
-                    onChange={this.updateColor.bind(null, 'body')} />
+                    valueLink={this.makeValueLink('body')}
+                    label='body' />
                 <ColorInput
-                    value={this.state.beakUpper}
-                    label='beakUpper'
-                    onChange={this.updateColor.bind(null, 'beakUpper')} />
+                    valueLink={this.makeValueLink('beakUpper')}
+                    label='beakUpper' />
                 <ColorInput
-                    value={this.state.beakLower}
-                    label='beakLower'
-                    onChange={this.updateColor.bind(null, 'beakLower')} />
+                    valueLink={this.makeValueLink('beakLower')}
+                    label='beakLower' />
                 <ColorInput
-                    value={this.state.wing}
-                    label='wing'
-                    onChange={this.updateColor.bind(null, 'wing')} />
+                    valueLink={this.makeValueLink('wing')}
+                    label='wing' />
                 <ColorInput
-                    value={this.state.hair}
-                    label='hair'
-                    onChange={this.updateColor.bind(null, 'hair')} />
+                    valueLink={this.makeValueLink('hair')}
+                    label='hair' />
             </div>
         );
     }
