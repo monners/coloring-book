@@ -18,7 +18,6 @@ export class App extends Component {
     }
 
     makeValueLink = (prop) => {
-        console.log(prop);
         return {
             value: this.state[prop],
             requestChange: (newVal) => {
@@ -33,9 +32,12 @@ export class App extends Component {
     };
 
     render() {
+        const coloringRegions = ['tail', 'legs', 'eye', 'body', 'beakUpper', 'beakLower', 'wing', 'hair'];
+
         return (
             <div>
-                <Bird tail={this.state.tail}
+                <Bird
+                    tail={this.state.tail}
                     legs={this.state.legs}
                     body={this.state.body}
                     beakUpper={this.state.beakUpper}
@@ -43,30 +45,12 @@ export class App extends Component {
                     eye={this.state.eye}
                     wing={this.state.wing}
                     hair={this.state.hair} />
-                <ColorInput
-                    valueLink={this.makeValueLink('tail')}
-                    label='tail'/>
-                <ColorInput
-                    valueLink={this.makeValueLink('legs')}
-                    label='legs' />
-                <ColorInput
-                    valueLink={this.makeValueLink('eye')}
-                    label='eye' />
-                <ColorInput
-                    valueLink={this.makeValueLink('body')}
-                    label='body' />
-                <ColorInput
-                    valueLink={this.makeValueLink('beakUpper')}
-                    label='beakUpper' />
-                <ColorInput
-                    valueLink={this.makeValueLink('beakLower')}
-                    label='beakLower' />
-                <ColorInput
-                    valueLink={this.makeValueLink('wing')}
-                    label='wing' />
-                <ColorInput
-                    valueLink={this.makeValueLink('hair')}
-                    label='hair' />
+
+                {coloringRegions.map(region => {
+                    return <ColorInput
+                             valueLink={this.makeValueLink(region)}
+                             label={region} />;
+                })}
             </div>
         );
     }
